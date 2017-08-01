@@ -6,7 +6,7 @@ There are two methods for getting started with this repo.
 
 ```
 > git clone https://github.com/hungnm11/ReactJSWeatherWithRedux
-> cd ReduxSimpleStarter
+> cd ReactJSWeatherWithRedux
 > npm install
 > npm start
 ```
