@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
+import WeatherSearch from './weather_search';
+import WeatherList from './weather_list';
 
-export default class App extends Component {
+class App extends Component {
   render() {
     return (
-      <div>React simple starter</div>
+      <div>
+        <WeatherSearch />
+        <WeatherList />
+      </div>
     );
   }
 }
+
+export default App;
