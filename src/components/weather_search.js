@@ -20,7 +20,7 @@ class WeatherSearch extends Component {
   }
 
   onFormSubmit(event) {
-    event.preventDefault();
+    // event.preventDefault();
     this.props.fetchCity(this.state.term);
     this.setState({ term: '' });
   }
@@ -35,17 +35,19 @@ class WeatherSearch extends Component {
           onChange={field.input.onChange}
           value={field.value}
         />
-        {field.meta.error}
+        <div className="text-danger">
+        {field.meta.touched ? field.meta.error : ''}
+        </div>
       </div>
     )
   }
 
   render() {
-    console.log('PROPS', this.props)
+    const { handleSubmit } = this.props;
     return (
-      <div>
-        <h3 className="align-middle">Weather App</h3>
-        <form onSubmit={this.onFormSubmit} className="input-group">
+      <div className="form-search">
+        <h3>Weather App</h3>
+        <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} className="input-group">
           <Field
             name="search"
             type="text"
