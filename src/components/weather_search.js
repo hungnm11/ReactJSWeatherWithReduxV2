@@ -24,7 +24,7 @@ class WeatherSearch extends Component {
   }
 
   render() {
-    console.log(this.props)
+    console.log('PROPS',this.props)
     return (
       <div>
         <h1 className="align-middle">Weather App</h1>

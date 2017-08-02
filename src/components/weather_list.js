@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Chart from './chart';
 import GoogleMap from './google_map';
 
 class WeatherList extends Component {
   renderWeather(cityData) {
+    console.log('cityData', cityData);
     const name = cityData.city.name;
     const { lon, lat } = cityData.city.coord;
 
@@ -16,7 +16,7 @@ class WeatherList extends Component {
   }
 
   render() {
-    console.log('LIST', this.props);
+    
     const { lon, lat } = this.props;
     return (
       <table className="table table-hover">
@@ -32,10 +32,6 @@ class WeatherList extends Component {
     )
   }
 } 
-
-const styles = {
-  height: 100
-}
 
 const mapStateToProps = ({ weather }) => {
   return { weather };
