@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Field, reduxForm } from 'redux-form';
 import { fetchCity } from '../actions/index';
 import GoogleMap from './google_map';
 
@@ -14,6 +15,7 @@ class WeatherSearch extends Component {
   }
 
   onInputChange(event) {
+    console.log(event.target.value)
     this.setState({ term: event.target.value });
   }
 
@@ -23,14 +25,33 @@ class WeatherSearch extends Component {
     this.setState({ term: '' });
   }
 
-  render() {
-    console.log('PROPS',this.props)
+  renderField(field) {
     return (
       <div>
-        <h1 className="align-middle">Weather App</h1>
+        <input
+          className={field.className}
+          type={field.type}
+          placeholder={field.placeholder}
+          onChange={field.input.onChange}
+          value={field.value}
+        />
+        {field.meta.error}
+      </div>
+    )
+  }
+
+  render() {
+    console.log('PROPS', this.props)
+    return (
+      <div>
+        <h3 className="align-middle">Weather App</h3>
         <form onSubmit={this.onFormSubmit} className="input-group">
-          <input 
-            className="form-control" 
+          <Field
+            name="search"
+            type="text"
+            className="form-control"
+            component={this.renderField}
+            placeholder="Enter location"
             onChange={this.onInputChange}
             value={this.state.term}
           />
@@ -43,8 +64,21 @@ class WeatherSearch extends Component {
   }
 }
 
+const validate = (values) => {
+  const errors = {};
+  console.log('Error', values)
+  if (!values.search) {
+    errors.search = 'Please enter your location.'
+  }
+
+  return errors;
+}
+
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({ fetchCity }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(WeatherSearch);
+export default reduxForm({
+  validate,
+  form: 'searchForm'
+})(connect(null, mapDispatchToProps)(WeatherSearch));
