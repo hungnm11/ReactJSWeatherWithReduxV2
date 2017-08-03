@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Simple starter package for Redux with React and Babel support",
   "main": "index.js",
-  "repository": "https://github.com/hungnm11/ReactJSWeatherWithRedux",
+  "repository": "https://github.com/hungnm11/ReactJSWeatherWithReduxV2",
   "scripts": {
     "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
@@ -36,6 +36,7 @@
     "react-router-dom": "^4.0.0",
     "react-sparklines": "1.5.0",
     "redux": "^3.0.4",
+    "redux-form": "^7.0.3",
     "redux-promise": "^0.5.3"
   }
 }

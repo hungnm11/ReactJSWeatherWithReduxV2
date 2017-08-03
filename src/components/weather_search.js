@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Field, reduxForm } from 'redux-form';
-import { fetchCity } from '../actions/index';
-import GoogleMap from './google_map';
+import { getLocation } from '../actions/index';
 
 class WeatherSearch extends Component {
   constructor(props) {
@@ -15,13 +14,13 @@ class WeatherSearch extends Component {
   }
 
   onInputChange(event) {
-    console.log(event.target.value)
+    console.log(event.target.value);
     this.setState({ term: event.target.value });
   }
 
   onFormSubmit(event) {
     // event.preventDefault();
-    this.props.fetchCity(this.state.term);
+    this.props.getLocation(this.state.term);
     this.setState({ term: '' });
   }
 
@@ -33,7 +32,6 @@ class WeatherSearch extends Component {
           type={field.type}
           placeholder={field.placeholder}
           onChange={field.input.onChange}
-          value={field.value}
         />
         <div className="text-danger">
         {field.meta.touched ? field.meta.error : ''}
@@ -44,6 +42,7 @@ class WeatherSearch extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+    console.log('Props', this.props);
     return (
       <div className="form-search">
         <h3>Weather App</h3>
@@ -68,7 +67,6 @@ class WeatherSearch extends Component {
 
 const validate = (values) => {
   const errors = {};
-  console.log('Error', values)
   if (!values.search) {
     errors.search = 'Please enter your location.'
   }
@@ -77,10 +75,10 @@ const validate = (values) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchCity }, dispatch)
+  return bindActionCreators({ getLocation }, dispatch);
 }
 
 export default reduxForm({
   validate,
   form: 'searchForm'
-})(connect(null, mapDispatchToProps)(WeatherSearch));
+})( connect(null, mapDispatchToProps)(WeatherSearch));
