@@ -1,10 +1,10 @@
-import { GET_LOCATION } from '../actions/index';
+import { FETCH_WEATHER } from '../actions/index';
 
 export default function(state = [], action) {
   switch(action.type) {
-    case GET_LOCATION: 
+    case FETCH_WEATHER:
       // return [ action.payload.data, ...state ]; // Avoiding state mutation
-      return [ action.payload ];
+      return [ action.payload.data ];
   }
   return state;
 }

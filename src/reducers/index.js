@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import getLocationReducer from './reducer_weather';
+import weatherReducer from './reducer_weather';
+import locationReducer from './reducer_location';
 
 const rootReducer = combineReducers({
   // state: (state = {}) => state
-  location: getLocationReducer,
+  weather: weatherReducer,
+  location: locationReducer,
   form: formReducer
 });
 
