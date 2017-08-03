@@ -15,11 +15,7 @@ class GoogleMap extends Component {
   onShowMap() {
     const map = new google.maps.Map(this.refs.map, {
       zoom: 12,
-      center: { lat: null, lng: null }
-      // center: {
-      //   lat: this.props.lat,
-      //   lng: this.props.lon
-      // }
+      center: { lat: -34.397, lng: 150.644 }
     })
 
     const geocoder = new google.maps.Geocoder();

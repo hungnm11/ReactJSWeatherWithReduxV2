@@ -6,6 +6,7 @@ class WeatherList extends Component {
 
   render() {
     const { location } = this.props; 
+    console.log('API', this.props.weather);
     return (
       <div className="show-map">
         <GoogleMap locate={location} />
@@ -14,8 +15,8 @@ class WeatherList extends Component {
   }
 }
 
-const mapStateToProps = ({ location }) => {
-  return { location };
+const mapStateToProps = ({ weather, location }) => {
+  return { weather, location };
 }
 
 export default connect(mapStateToProps)(WeatherList);
