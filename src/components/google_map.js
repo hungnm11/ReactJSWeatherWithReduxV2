@@ -5,7 +5,7 @@ import { getLatLng } from '../actions/index';
 
 class GoogleMap extends Component {
   componentDidMount() {
-    this.onShowMap();
+    // this.onShowMap();
   }
 
   componentDidUpdate() {
@@ -15,7 +15,7 @@ class GoogleMap extends Component {
   onShowMap() {
     const map = new google.maps.Map(this.refs.map, {
       zoom: 12,
-      center: { lat: -34.397, lng: 150.644 }
+      center: { lat: null, lng: null }
       // center: {
       //   lat: this.props.lat,
       //   lng: this.props.lon
@@ -30,7 +30,6 @@ class GoogleMap extends Component {
     const locate = this.props.locate.toString();
     
     geocoder.geocode({ 'address': locate }, (results, status) => {
-      console.log('LOCATION==>', results);
       if (status === 'OK') {
         resultsMap.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
