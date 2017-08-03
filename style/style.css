@@ -14,6 +14,15 @@ svg {
 .show-map > div {
   height: 200px;
   width: 100%;
+  margin-bottom: 15px;
+}
+
+.show-map.hide {
+  display: none;
+}
+
+.show-map.show {
+  display: block;
 }
 
 .form-search {

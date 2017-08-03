@@ -14,7 +14,6 @@ class WeatherSearch extends Component {
   }
 
   onInputChange(event) {
-    console.log(event.target.value);
     this.setState({ term: event.target.value });
   }
 
@@ -42,10 +41,9 @@ class WeatherSearch extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-    console.log('Props', this.props);
     return (
       <div className="form-search">
-        <h3>Weather App</h3>
+        <h1 className="display-4">Weather App</h1>
         <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} className="input-group">
           <Field
             name="search"

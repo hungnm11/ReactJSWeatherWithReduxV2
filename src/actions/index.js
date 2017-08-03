@@ -7,11 +7,19 @@ const API_KEY = 'e1f4fca3b8af6f3daccf60d38fbb93f6';
 const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 const ROOT_URL = `https://api.darksky.net/forecast/${API_KEY}`;
 export const FETCH_WEATHER = 'FETCH_WEATHER';
+export const FETCH_REQUEST = 'FETCH_REQUEST';
+export const FETCH_ERROR = 'FETCH_ERROR';
 
 export function getLocation(location) {
   return {
     type: GET_LOCATION,
     payload: location
+  }
+}
+
+export function fetchRequest() {
+  return {
+    type: FETCH_REQUEST
   }
 }
 
@@ -22,8 +30,5 @@ export function getLatLng(position) {
   const url = `${PROXY_URL + ROOT_URL}/${lat},${lng}`;
   console.log('URL', url);
   const request = axios.get(url);
-  return {
-    type: FETCH_WEATHER,
-    payload: request
-  }
+  return { type: FETCH_WEATHER, payload: request }
 }

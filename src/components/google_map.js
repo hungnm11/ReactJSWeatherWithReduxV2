@@ -24,7 +24,7 @@ class GoogleMap extends Component {
 
   geocodeAddress(geocoder, resultsMap) {
     const locate = this.props.locate.toString();
-    
+
     geocoder.geocode({ 'address': locate }, (results, status) => {
       if (status === 'OK') {
         resultsMap.setCenter(results[0].geometry.location);
@@ -44,7 +44,6 @@ class GoogleMap extends Component {
   }
 
   render() {
-    console.log('GOOooooo', this.props);
     return (
       <div ref="map" />
     )
