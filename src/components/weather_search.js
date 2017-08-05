@@ -44,7 +44,7 @@ class WeatherSearch extends Component {
     const { handleSubmit } = this.props;
     return (
       <div className="form-search">
-        <h1 className="display-4">Weather App</h1>
+        <h3>Weather Forecast</h3>
         <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} className="input-group">
           <Field
             name="search"

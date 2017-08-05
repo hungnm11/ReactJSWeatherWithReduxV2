@@ -40,7 +40,7 @@ export default function(state = initialState, action) {
       return {
         ...state,
         isFetching: false,
-        data: [action.payload.data]
+        data: [action.payload.data][0]
       }
     case FETCHING_DATA_FAILURE:
       return {

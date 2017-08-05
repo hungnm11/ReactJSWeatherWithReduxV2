@@ -1,4 +1,4 @@
-import { GET_LOCATION } from '../actions/index';
+import { GET_LOCATION, TIME_STAMP } from '../actions/index';
 
 export default function(state = [], action) {
   switch(action.type) {
@@ -6,6 +6,10 @@ export default function(state = [], action) {
       return {
         located: action.payload
       };
+    case TIME_STAMP: 
+      return {
+        timestamp: action.payload
+      }
   }
   return state;
 }
