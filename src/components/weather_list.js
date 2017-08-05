@@ -7,24 +7,17 @@ import GoogleMap from './google_map';
 class WeatherList extends Component {
 
   renderTimestamp(time) {
-    const d = new Date(time * 1000);
-    let timestamp = '';
-    let day = d.getDate();
-    let month = d.getMonth() + 1;
-    const hours = d.getHours() >= 10 ? d.getHours() : `0${d.getHours()}`;
-    const min = d.getMinutes() >= 10 ? d.getMinutes() : `0${d.getMinutes()}`;
-    day = day >= 10 ? day : `0${day}`;
-    month = month >= 10 ? month : `0${month}`;
-    const year = d.getFullYear() >= 10 ? d.getFullYear() : `0${d.getFullYear()}`;
-    const _day = `${day}.${month}.${year}`;
-    const _time = `${hours}:${min}`;
-    timestamp = `${_day}, ${_time}`;
-    return timestamp;
+    return new Date(time * 1000).toGMTString();
+  }
+
+  toCelsius(f) {
+    return Math.floor((5/9) * (f-32));
   }
 
   renderWeather() {
-    const { timezone, currently: { time } } = this.props.weather.data;
+    const { timezone, currently: { apparentTemperature, humidity, dewPoint, time } } = this.props.weather.data;
     const timestamp = this.renderTimestamp(time);
+    const celsius = this.toCelsius(apparentTemperature);
     return (
       <div>
         <p className="h4">Local Weather</p>
@@ -34,30 +27,16 @@ class WeatherList extends Component {
         <table className="table table-responsive">
           <thead>
             <tr>
-              <th>#</th>
-              <th>First Name</th>
-              <th>Last Name</th>
-              <th>Username</th>
+              <th>Degree</th>
+              <th>Humidity (%)</th>
+              <th>Dew Point Temperature</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
+              <td>{celsius} &#8451;</td>
+              <td>{humidity}</td>
+              <td>{dewPoint}</td>
             </tr>
           </tbody>
         </table>
