@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getLatLng } from '../actions/index';
+import { fetchData } from '../actions/index';
 
 class GoogleMap extends Component {
   componentDidMount() {
@@ -23,7 +23,7 @@ class GoogleMap extends Component {
   }
 
   geocodeAddress(geocoder, resultsMap) {
-    const locate = this.props.locate.toString();
+    const locate = this.props.locate;
 
     geocoder.geocode({ 'address': locate }, (results, status) => {
       if (status === 'OK') {
@@ -32,7 +32,7 @@ class GoogleMap extends Component {
           map: resultsMap,
           position: results[0].geometry.location
         });
-        this.props.getLatLng({
+        this.props.fetchData({
           lat: results[0].geometry.location.lat(),
           lng: results[0].geometry.location.lng()
         });
@@ -51,7 +51,7 @@ class GoogleMap extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getLatLng }, dispatch);
+  return bindActionCreators({ fetchData }, dispatch);
 }
 
 export default connect(null, mapDispatchToProps)(GoogleMap);

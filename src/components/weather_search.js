@@ -19,6 +19,7 @@ class WeatherSearch extends Component {
 
   onFormSubmit(event) {
     // event.preventDefault();
+    
     this.props.getLocation(this.state.term);
     this.setState({ term: '' });
   }
