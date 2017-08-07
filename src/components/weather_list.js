@@ -15,16 +15,16 @@ class WeatherList extends Component {
   }
 
   renderWeather() {
-    const { timezone, currently: { apparentTemperature, humidity, dewPoint, time, icon } } = this.props.weather.data;
+    const { timezone, currently: { apparentTemperature, humidity, dewPoint, time, icon, temperature } } = this.props.weather.data;
     const timestamp = this.renderTimestamp(time);
-    const celsius = this.toCelsius(apparentTemperature);
+    const celsius = this.toCelsius(temperature);
     const name = timezone.substr(timezone.indexOf('/') + 1);
     return (
       <div>
         <p className="h4">Local Weather</p>
         <div className="col-8">{timestamp}</div>
         <div className="col-4"><h1 className="display-4">{name}</h1></div>
-        <h1 className="display-2">{celsius}</h1>
+        <h1 className="display-2">{celsius}&#8451;</h1>
         <table className="table">
           <thead>
             <tr>
@@ -35,7 +35,7 @@ class WeatherList extends Component {
           </thead>
           <tbody>
             <tr>
-              <td>{celsius} &#8451;</td>
+              <td>{celsius}&#8451;</td>
               <td>{humidity}</td>
               <td>{dewPoint} &#8457;</td>
             </tr>

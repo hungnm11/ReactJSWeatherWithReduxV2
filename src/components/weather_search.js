@@ -53,7 +53,6 @@ class WeatherSearch extends Component {
             component={this.renderField}
             placeholder="Enter location"
             onChange={this.onInputChange}
-            value={this.state.term}
           />
           <span className="input-group-btn">
             <button tyep="submit" className="btn btn-secondary">Search</button>
