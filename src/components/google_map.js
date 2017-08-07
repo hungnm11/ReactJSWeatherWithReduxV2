@@ -14,7 +14,6 @@ class GoogleMap extends Component {
   }
 
   getGeolocation() {
-    console.log('Got it');
     const map = new google.maps.Map(this.refs.map, {
       zoom: 12,
       center: { lat: -34.397, lng: 150.644 }
@@ -23,12 +22,16 @@ class GoogleMap extends Component {
     const infoWindow = new google.maps.InfoWindow;
 
     if (navigator.geolocation) {
-      console.log('get Location');
       navigator.geolocation.getCurrentPosition((position) => {
         const pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         }
+        console.log('geolocation', pos)
+        this.props.fetchData({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        });
         infoWindow.setPosition(pos);
         infoWindow.setContent('Your Location');
         infoWindow.open(map);
