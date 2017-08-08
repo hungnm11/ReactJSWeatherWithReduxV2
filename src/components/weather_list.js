@@ -23,7 +23,7 @@ class WeatherList extends Component {
       <div>
         <p className="h4">Local Weather</p>
         <div className="col-8">{timestamp}</div>
-        <div className="col-4"><h1 className="display-4">{name}</h1></div>
+        <div className="col-4"><h1 className="display-4">{name.replace(/_/g, ' ')}</h1></div>
         <h1 className="display-2">{celsius}&#8451;</h1>
         <table className="table">
           <thead>
