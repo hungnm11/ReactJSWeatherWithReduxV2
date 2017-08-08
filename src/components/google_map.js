@@ -36,8 +36,20 @@ class GoogleMap extends Component {
         infoWindow.setContent('Your Location');
         infoWindow.open(map);
         map.setCenter(pos);
+      }, () => {
+        this.handleLocationError(true, infoWindow, map.getCenter(), map);
       });
+    } else {
+      this.handleLocationError(true, infoWindow, map.getCenter());
     }
+  }
+
+  handleLocationError(browserHasGeolocation, infoWindow, pos, map) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+      'Error: The Geolocation service failed.' :
+      'Error: Your browser doesn\'t support geolocation.');
+    infoWindow.open(map);
   }
 
   onShowMap() {
