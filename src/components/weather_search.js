@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
 import { getLocation } from '../actions/index';
 
 class WeatherSearch extends Component {
@@ -13,15 +13,19 @@ class WeatherSearch extends Component {
     this.onInputChange = this.onInputChange.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('nextProps', nextProps);
+  }
+
   onInputChange(event) {
     this.setState({ term: event.target.value });
   }
 
   onFormSubmit(event) {
     // event.preventDefault();
-    
     this.props.getLocation(this.state.term);
-    this.setState({ term: '' });
+    this.refs.form.reset();
+    // this.setState({ term: '' });
   }
 
   renderField(field) {
@@ -45,7 +49,7 @@ class WeatherSearch extends Component {
     return (
       <div className="form-search">
         <h3>Weather Forecast</h3>
-        <form onSubmit={handleSubmit(this.onFormSubmit.bind(this))} className="input-group">
+        <form ref="form" onSubmit={handleSubmit(this.onFormSubmit.bind(this))} className="input-group">
           <Field
             name="search"
             type="text"
@@ -55,7 +59,7 @@ class WeatherSearch extends Component {
             onChange={this.onInputChange}
           />
           <span className="input-group-btn">
-            <button tyep="submit" className="btn btn-secondary">Search</button>
+            <button type="submit" className="btn btn-secondary">Search</button>
           </span>
         </form>
       </div>
@@ -68,7 +72,6 @@ const validate = (values) => {
   if (!values.search) {
     errors.search = 'Please enter your location.'
   }
-
   return errors;
 }
 
